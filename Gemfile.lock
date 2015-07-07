@@ -102,5 +102,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  minitest
   sg_postcode!
   sqlite3
