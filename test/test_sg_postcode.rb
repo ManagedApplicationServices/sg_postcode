@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TestSgPostcode
+class TestSgPostcode < Minitest::Test
   def test_init_new_sg_postcode_array
     postcode_array = SgPostcode::Array.new([])
     assert_kind_of SgPostcode::Array, postcode_array
