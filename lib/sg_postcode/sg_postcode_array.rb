@@ -1,2 +1,0 @@
-module SgPostcodeArray
-end
