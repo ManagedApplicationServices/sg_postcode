@@ -20,6 +20,8 @@ module SgPostcode
     #
     def self.send_geo_request(postcode, host: :Google)
       return nil if Module.const_defined? host
+
+      Google.new(postcode).request
     end
   end
 end
