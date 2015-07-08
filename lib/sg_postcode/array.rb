@@ -1,5 +1,3 @@
-require "converters/long_lat_converter"
-
 module SgPostcode
   class Array
     def initialize(postcodes, opts = {})
