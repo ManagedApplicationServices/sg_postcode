@@ -1,16 +1,12 @@
 require 'test_helper'
 
 class SgPostcodeTest < ActiveSupport::TestCase
-  test "truth" do
-    assert_kind_of Module, SgPostcode
-  end
-
-  test "init new sg postcode Array" do
+  def test_init_new_sg_postcode_array
     postcode_array = SgPostcode::Array.new([])
     assert_kind_of SgPostcode::Array, postcode_array
   end
 
-  test "convert to long lat array" do
+  def convert_to_long_lat_array
     postcode_array = SgPostcode::Array.new([])
     postcode_array.convert
   end
