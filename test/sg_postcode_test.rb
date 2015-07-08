@@ -9,4 +9,9 @@ class SgPostcodeTest < ActiveSupport::TestCase
     postcode_array = SgPostcode::Array.new([])
     assert_kind_of SgPostcode::Array, postcode_array
   end
+
+  test "convert to long lat array" do
+    postcode_array = SgPostcode::Array.new([])
+    postcode_array.convert
+  end
 end

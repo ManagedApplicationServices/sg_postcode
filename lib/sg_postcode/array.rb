@@ -1,3 +1,5 @@
+require "converters/long_lat_converter"
+
 module SgPostcode
   class Array
     def initialize(postcodes, opts = {})
@@ -16,6 +18,7 @@ module SgPostcode
     # SgPostcode::Array.new(postcodes).convert
     #
     def convert(error_ignore = true)
+      LongLatConverter.convert(@postcodes, ignore_error: error_ignore)
     end
   end
 end
