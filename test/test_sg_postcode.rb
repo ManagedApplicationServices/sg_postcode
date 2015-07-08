@@ -10,8 +10,4 @@ class TestSgPostcode < Minitest::Test
     postcode_array = SgPostcode::Array.new([])
     postcode_array.convert
   end
-
-  def test_send_request
-    request = SgPostcode::LongLatConverter.place_info(nil)
-  end
 end
