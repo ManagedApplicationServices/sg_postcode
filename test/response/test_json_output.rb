@@ -10,6 +10,6 @@ class TestJsonOutput < Minitest::Test
 
   def test_data
     response = SgPostcode::Response.new(@file)
-    assert_equal response.data, @json
+    assert_kind_of String, response.data
   end
 end
