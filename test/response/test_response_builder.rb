@@ -13,7 +13,7 @@ class TestResponseBuilder < Minitest::Test
       ]
     }
 
-    @builder = SgPostcode::ResponseBuilder::Builder.new(json)
+    @builder = SgPostcode::ResponseBuilder::JsonOutput.new(json)
   end
 
   def test_digg_1st_level
@@ -51,7 +51,7 @@ class TestResponseBuilder < Minitest::Test
     file = File.read path
 
     @json = JSON.parse(file)
-    @builder = SgPostcode::ResponseBuilder::Builder.new(@json)
+    @builder = SgPostcode::ResponseBuilder::JsonOutput.new(@json)
   end
 
   def test_data
