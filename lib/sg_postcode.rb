@@ -8,6 +8,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "sg_postcode", "response"))
 
 
 require "response"
+require "response_builder"
 require "array"
 require "google"
 require "long_lat_converter"
