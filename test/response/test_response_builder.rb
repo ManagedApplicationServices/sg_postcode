@@ -4,10 +4,12 @@ require 'json'
 class TestResponseBuilder < Minitest::Test
   def setup
     json = {
-      'name' =>  'KevinTran',
-      'jobs' => [
-        { 'title' =>  'Developer' },
-        { 'title' => 'Consultant' }
+      'results' => [
+        'name' =>  'KevinTran',
+        'jobs' => [
+          { 'title' =>  'Developer' },
+          { 'title' => 'Consultant' }
+        ]
       ]
     }
 
@@ -42,5 +44,23 @@ class TestResponseBuilder < Minitest::Test
     key_path = ['oops']
 
     assert_equal({}, @builder.digg(key_path))
+  end
+
+  def set_up_data_for_test_data
+    path = File.join(File.dirname(__FILE__), '..', 'sample_response.json')
+    file = File.read path
+
+    @json = JSON.parse(file)
+    @builder = SgPostcode::ResponseBuilder::Builder.new(@json)
+  end
+
+  def test_data
+    set_up_data_for_test_data
+
+    result = @builder.data
+
+    refute_nil result[:format_address]
+    refute_nil result[:lat]
+    refute_nil result[:long]
   end
 end

@@ -10,7 +10,7 @@ module SgPostcode
           {
             format_address: ['formatted_address'],
             lat: ['geometry', 'location', 'lat'],
-            long: ['geometry', 'location', 'long'],
+            long: ['geometry', 'location', 'lng'],
           }
         end
       end
@@ -18,7 +18,7 @@ module SgPostcode
 
     class Builder
       def initialize(raw_data)
-        @raw_data = raw_data
+        @raw_data = raw_data['results'].try(:first)
       end
 
       def raw_data
