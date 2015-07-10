@@ -14,11 +14,6 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-
-
-
-
-
 Bundler::GemHelper.install_tasks
 
 require 'rake/testtask'
@@ -26,9 +21,9 @@ require 'rake/testtask'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
+  t.pattern = 'test/**/test_*.rb'
   t.verbose = false
+  t.options = '--pride'
 end
-
 
 task default: :test
