@@ -15,7 +15,10 @@ class TestSgPostcode < Minitest::Test
     array_convert =
       SgPostcode::Array
         .new(['546080', '238858'])
+        .convert
 
-    assert_kind_of Array, array_convert.convert
+    assert_kind_of Array, array_convert
+    assert_equal 2, array_convert.count
+    assert_operator array_convert.first, :key?, :format_address
   end
 end
