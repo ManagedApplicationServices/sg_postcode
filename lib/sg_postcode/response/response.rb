@@ -2,7 +2,7 @@ require 'json'
 
 module SgPostcode
   class Response
-    def initialize(raw_data, response_type = :json)
+    def initialize(raw_data, response_type: :json)
       @raw_data = JSON.parse(raw_data)
       @response_type = response_type
     end

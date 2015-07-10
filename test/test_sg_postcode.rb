@@ -10,4 +10,12 @@ class TestSgPostcode < Minitest::Test
     postcode_array = SgPostcode::Array.new([])
     postcode_array.convert
   end
+
+  def test_real_convert
+    array_convert =
+      SgPostcode::Array
+        .new(['546080', '238858'])
+
+    assert_kind_of Array, array_convert.convert
+  end
 end

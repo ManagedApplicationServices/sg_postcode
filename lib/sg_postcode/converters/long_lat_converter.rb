@@ -1,10 +1,11 @@
 module SgPostcode
   module LongLatConverter
     def self.convert(postcodes, opts = {})
+      postcodes.map { |postcode| place_info(postcode) }
     end
 
     def self.place_info(postcode)
-      send_geo_request(postcode, host: :Google)
+      send_geo_request(postcode, host: :Google).data
     end
 
     # Send request to host, and return the response
