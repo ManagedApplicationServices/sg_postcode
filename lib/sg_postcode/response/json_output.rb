@@ -22,13 +22,15 @@ module SgPostcode
       #
       # @example
       #   @raw_data =
-      #    {
-      #      'address' => [
-      #        {
-      #         'short_name' => '1'
-      #        }
-      #      ]
-      #    }
+      #     'results' => [
+      #      {
+      #        'address' => [
+      #          {
+      #           'short_name' => '1'
+      #          }
+      #        ]
+      #      }
+      #     ]
       #
       #    so the key_path will be
       #    keypath = ['address', 0, 'short_name']
