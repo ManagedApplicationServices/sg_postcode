@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = SgPostcode::VERSION
   s.authors     = ["Duy Khoa"]
   s.email       = ["duykhoa12t@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of SgPostcode."
-  s.description = "TODO: Description of SgPostcode."
+  #s.homepage    = "TODO"
+  s.summary     = "Convert SG Postcode to long lat array"
+  s.description = "Convert SG Postcode to long lat array"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
