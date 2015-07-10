@@ -13,6 +13,7 @@ module SgPostcode
     # @example
     #  postcodes = ['238432', '247964']
     #  SgPostCode::LongLatConverter.convert(postcodes)
+    # TODO options
     def self.convert(postcodes, opts = {})
       postcodes.map { |postcode| place_info(postcode) }
     end
