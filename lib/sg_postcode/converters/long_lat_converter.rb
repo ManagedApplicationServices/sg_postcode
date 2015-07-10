@@ -18,6 +18,12 @@ module SgPostcode
       postcodes.map { |postcode| place_info(postcode) }
     end
 
+    # Request info from host for a postcode
+    #
+    # @return hash of info, check
+    #  response/config.rb to see the info fields
+    #
+    # @params: postcode number [String]
     def self.place_info(postcode)
       send_geo_request(postcode, host: :Google).data
     end
