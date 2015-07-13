@@ -1,0 +1,34 @@
+module SgPostcode
+  module ResponseBuilder
+    class Config
+      class << self
+        # Get all response fields (key_paths)
+        def fields
+          @@fields ||= default_fields
+        end
+
+        # add a custom key_path
+        def add_key_path(key_name, *path)
+          #TODO
+        end
+
+        # remove a key_path
+        #
+        # @return nothing if keypath doesn't exist
+        #
+        def remove_key_path(key_name)
+          #TODO
+        end
+
+        # default fields (key_paths)
+        def default_fields
+          {
+            format_address: ['formatted_address'],
+            lat: ['geometry', 'location', 'lat'],
+            long: ['geometry', 'location', 'lng'],
+          }
+        end
+      end
+    end
+  end
+end
