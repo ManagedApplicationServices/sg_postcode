@@ -21,4 +21,13 @@ class TestSgPostcode < Minitest::Test
     assert_equal 2, array_convert.count
     assert_operator array_convert.first, :key?, :format_address
   end
+
+  def test_invalid_convert
+    array_convert =
+      SgPostcode::Array
+        .new(['Totally cannot exist', nil])
+        .convert
+
+    assert_kind_of Array, array_convert
+  end
 end
