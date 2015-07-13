@@ -63,4 +63,10 @@ class TestResponseBuilder < Minitest::Test
     refute_nil result[:lat]
     refute_nil result[:long]
   end
+
+  def test_calling_data_method_raise_error
+    @abstract_builder = SgPostcode::ResponseBuilder::Builder.new(nil)
+
+    assert_raises(NotImplementedError) { @abstract_builder.data }
+  end
 end

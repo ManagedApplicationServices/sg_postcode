@@ -18,7 +18,7 @@ module SgPostcode
     # @return [{ long: '123456', lat: '123456' }, ...]
     #
     # @params
-    #   error_ignore: ignore invalid postcode(s)
+    #   opts: list of options from #initializer
     #
     # @example
     # SgPostcode::Array.new(postcodes).convert
