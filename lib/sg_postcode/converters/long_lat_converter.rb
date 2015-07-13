@@ -50,14 +50,30 @@ module SgPostcode
       return nil if Module.const_defined? @host
 
       Response.new(
-        Google.new(postcode).request,
+        response(postcode),
         response_type: :json
       )
     end
 
+    private
+
+    def response(postcode)
+      case @host
+      when :Google
+        Google.new(postcode).request
+      else
+        nil
+      end
+    end
+
     def convert_options(opts)
-      @host = opts[:host] || :Google
+      @host = class_name(opts[:host]) || :Google
       @response_type = opts[:response_type] || :json
+    end
+
+    def class_name(host)
+      return nil unless Module.constants.include? host
+      host.to_sym
     end
   end
 end
