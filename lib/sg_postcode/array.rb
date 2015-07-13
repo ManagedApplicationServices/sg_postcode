@@ -1,5 +1,13 @@
 module SgPostcode
   class Array
+    # Init a new array object
+    #
+    # @params
+    #   - postcodes: array[String] of postcode
+    #   - opts: hash of option
+    #     + response_type: default is :json, check the response folder
+    #     + host: :Google is default, check services folder
+    #
     def initialize(postcodes, opts = {})
       @postcodes = postcodes
       @opts = opts
@@ -15,8 +23,8 @@ module SgPostcode
     # @example
     # SgPostcode::Array.new(postcodes).convert
     #
-    def convert(error_ignore = true)
-      LongLatConverter.convert(@postcodes, ignore_error: error_ignore)
+    def convert
+      LongLatConverter.new(@postcodes, @opts).convert
     end
   end
 end

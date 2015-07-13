@@ -1,5 +1,12 @@
 module SgPostcode
-  module LongLatConverter
+  class LongLatConverter
+    attr_reader :postcodes
+
+    def initialize(postcodes, opts = {})
+      @postcodes = postcodes
+      convert_options opts
+    end
+
     # Convert an array of SG Postcode
     #
     # @return an array contains long, lat
@@ -8,13 +15,13 @@ module SgPostcode
     #   - postcodes: array[String] of postcode
     #   - opts: options in hash, supports
     #     + response_type: default is :json, check the response folder
-    #     + service_provider: :Google is default, check services folder
+    #     + host: :Google is default, check services folder
     #
     # @example
     #  postcodes = ['238432', '247964']
     #  SgPostCode::LongLatConverter.convert(postcodes)
-    # TODO options
-    def self.convert(postcodes, opts = {})
+    #
+    def convert
       postcodes.map { |postcode| place_info(postcode) }
     end
 
@@ -24,8 +31,8 @@ module SgPostcode
     #  response/config.rb to see the info fields
     #
     # @params: postcode number [String]
-    def self.place_info(postcode)
-      send_geo_request(postcode, host: :Google).data
+    def place_info(postcode)
+      send_geo_request(postcode).data
     end
 
     # Send request to host, and return the response
@@ -39,13 +46,18 @@ module SgPostcode
     # @example
     # SgPostcode::LongLatConverter.send_geo_request("230000", host: :Google)
     #
-    def self.send_geo_request(postcode, host: :Google)
-      return nil if Module.const_defined? host
+    def send_geo_request(postcode)
+      return nil if Module.const_defined? @host
 
       Response.new(
         Google.new(postcode).request,
         response_type: :json
       )
+    end
+
+    def convert_options(opts)
+      @host = opts[:host] || :Google
+      @response_type = opts[:response_type] || :json
     end
   end
 end

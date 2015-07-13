@@ -1,12 +1,16 @@
 require 'test_helper'
 
 class TestLongLatConverter < Minitest::Test
+  def setup
+    @converter = SgPostcode::LongLatConverter.new(nil)
+  end
+
   def test_send_request
-    SgPostcode::LongLatConverter.place_info(nil)
+    @converter.place_info(nil)
   end
 
   def test_send_geo_request
-    result = SgPostcode::LongLatConverter.send_geo_request("23000", host: :NotExist)
+    result = @converter.send_geo_request("23000")
 
     refute_equal nil, result
   end
