@@ -9,7 +9,7 @@ module SgPostcode
       # raw_data must have the 'results', follow is an array
       def initialize(raw_data)
         # FIXME: check if the data is invalid
-        @raw_data = raw_data['results'].first
+        @raw_data = raw_data['results'].first rescue nil
       end
 
       # Implement this method in the subclass instead
