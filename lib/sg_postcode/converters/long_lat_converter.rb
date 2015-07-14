@@ -17,7 +17,7 @@ module SgPostcode
     #
     def convert
       postcodes
-        .uniq { |item| item }
+        .uniq(&:itself)
         .map { |postcode| density_of(postcode, place_info(postcode)) }
     end
 
