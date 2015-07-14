@@ -16,7 +16,21 @@ module SgPostcode
     #  SgPostCode::LongLatConverter.new(postcodes).convert
     #
     def convert
-      postcodes.map { |postcode| place_info(postcode) }
+      postcodes
+        .uniq { |item| item }
+        .map { |postcode| density_of(postcode, place_info(postcode)) }
+    end
+
+    def density_of(postcode, place_info_result)
+      place_info_result.merge density_info(postcode)
+    end
+
+    def density_info(postcode)
+      density_count(postcode) > 1 ? { density: density_count(postcode) } : {}
+    end
+
+    def density_count(postcode)
+      postcodes.count postcode
     end
 
     # Request info from host for a postcode
@@ -25,6 +39,7 @@ module SgPostcode
     #  response/config.rb to see the info fields
     #
     # @params: postcode number [String]
+    #
     def place_info(postcode)
       send_geo_request(postcode).data
     end

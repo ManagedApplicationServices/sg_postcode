@@ -22,15 +22,16 @@ class TestSgPostcode < Minitest::Test
     assert_operator array_convert.first, :key?, :format_address
   end
 
-  def test_real_convert
+  def test_real_convert_with_density
     array_convert =
       SgPostcode::Array
-        .new(['546080', '238858'])
+        .new(['540000'] * 10)
         .convert
 
     assert_kind_of Array, array_convert
-    assert_equal 2, array_convert.count
-    assert_operator array_convert.first, :key?, :format_address
+    assert_equal 1, array_convert.count
+    assert_operator array_convert.first, :key?, :density
+    assert_equal 10, array_convert.first[:density]
   end
 
   def test_invalid_convert
