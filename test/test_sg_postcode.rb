@@ -43,4 +43,9 @@ class TestSgPostcode < Minitest::Test
 
     assert_kind_of Array, array_convert
   end
+
+  def test_convert_with_options
+    convert = SgPostcode::Array.new(['238438'], host: :Google)
+    assert_kind_of Array, convert.convert
+  end
 end
