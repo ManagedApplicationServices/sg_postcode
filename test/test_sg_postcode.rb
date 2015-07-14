@@ -19,6 +19,7 @@ class TestSgPostcode < Minitest::Test
 
     assert_kind_of Array, array_convert
     assert_equal 2, array_convert.count
+    refute_operator array_convert.first, :key?, :density
     assert_operator array_convert.first, :key?, :format_address
   end
 

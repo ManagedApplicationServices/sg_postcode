@@ -21,18 +21,6 @@ module SgPostcode
         .map { |postcode| density_of(postcode, place_info(postcode)) }
     end
 
-    def density_of(postcode, place_info_result)
-      place_info_result.merge density_info(postcode)
-    end
-
-    def density_info(postcode)
-      density_count(postcode) > 1 ? { density: density_count(postcode) } : {}
-    end
-
-    def density_count(postcode)
-      postcodes.count postcode
-    end
-
     # Request info from host for a postcode
     #
     # @return hash of info, check
@@ -82,6 +70,18 @@ module SgPostcode
     def class_name(host)
       return nil unless Module.constants.include? host
       host.to_sym
+    end
+
+    def density_of(postcode, place_info_result)
+      place_info_result.merge density_info(postcode)
+    end
+
+    def density_info(postcode)
+      density_count(postcode) > 1 ? { density: density_count(postcode) } : {}
+    end
+
+    def density_count(postcode)
+      postcodes.count postcode
     end
   end
 end
