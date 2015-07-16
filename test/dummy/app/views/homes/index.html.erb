@@ -51,7 +51,7 @@
               <form action="/" class="s6">
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="postcode" type="text" length="100" name="postcode">
+                    <input id="postcode" type="text" length="100" name="postcode" value="<%= params[:postcode]%>">
                     <label for="Postcode">Input text</label>
                   </div>
                 </div>
@@ -104,7 +104,7 @@
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
       center: new google.maps.LatLng(<%= centerLatLong[0] %>, <%= centerLatLong[1] %>),
-      zoom: 16
+      zoom: 10
     };
     var map = new google.maps.Map(mapCanvas, mapOptions);
     <%- @result.each do |result| %>
