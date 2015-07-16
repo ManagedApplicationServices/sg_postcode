@@ -19,7 +19,7 @@
           <img class="activator" src="https://download.unsplash.com/photo-1433785567155-bf5530cab72c" alt="card demo">
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">
+          <span class="card-title activator white-text text-darken-4">
             SgPostcode Demo App
             <i class="material-icons right">more_vert</i>
           </span>
@@ -36,38 +36,76 @@
           </p>
         </div>
       </div>
+
+      <div class="card medium">
+        <div id="map-canvas"></div>
+      </div>
     </div>
 
     <div class="col s12 m6">
       <div class="card light-green lighten-4">
-          <div class="card-content">
-            <div class="card-title">Convert Form</div>
-            <p>
-              <div class="row">
-                <form action="/" class="s6">
-                  <div class="row">
-                    <div class="input-field col s6">
-                      <input id="postcode" type="text" length="6" name="postcode">
-                      <label for="Postcode">Input text</label>
-                    </div>
+        <div class="card-content">
+          <div class="card-title">Convert Form</div>
+          <p>
+            <div class="row">
+              <form action="/" class="s6">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="postcode" type="text" length="100" name="postcode">
+                    <label for="Postcode">Input text</label>
                   </div>
-
-                  <div class="row">
-                    <div class="input-field col s6">
-                      <button type="submit" class="waves-effect waves-light btn">Convert</button>
-                    </div>
-                  </div>
-                </form>
-
-                <div class="s6">
-                  <h5>
-                    <%=@result %>
-                  </h5>
                 </div>
-              </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <button type="submit" class="waves-effect waves-light btn">Convert</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Result</span>
+            <p>
+              <table class="responsive-table">
+                <thead>
+                  <th>Name</th>
+                  <th>Long</th>
+                  <th>Lat</th>
+                </thead>
+
+                <tbody>
+                  <%- @result.each do |result| %>
+                    <tr>
+                      <td><%= result.fetch(:format_address)%></td>
+                      <td><%= result.fetch(:long)%></td>
+                      <td><%= result.fetch(:lat)%></td>
+                    </tr>
+                  <%end%>
+                </tbody>
+              </table>
             </p>
           </div>
+        </div>
       </div>
     </div>
   </div>
 </article>
+
+<script>
+  function initialize() {
+    var mapCanvas = document.getElementById('map-canvas');
+    var mapOptions = {
+      center: new google.maps.LatLng(),
+      zoom: 8
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
