@@ -97,14 +97,25 @@
   </div>
 </article>
 
+<%-centerLatLong = @result.count > 0 ? [@result.first[:lat], @result.first[:long]] : [1.36, 103.87] %>
+
 <script>
   function initialize() {
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
-      center: new google.maps.LatLng(),
-      zoom: 8
-    }
+      center: new google.maps.LatLng(<%= centerLatLong[0] %>, <%= centerLatLong[1] %>),
+      zoom: 16
+    };
     var map = new google.maps.Map(mapCanvas, mapOptions);
+    <%- @result.each do |result| %>
+      var place = new google.maps.LatLng(<%= result[:lat] %>, <%= result[:long] %>);
+      var marker = new google.maps.Marker({
+        position: place,
+        map: map,
+        title: "<%= result[:format_address] %>",
+        animation: google.maps.Animation.DROP,
+      });
+    <%end%>
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
