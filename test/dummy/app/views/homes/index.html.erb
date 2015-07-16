@@ -1,0 +1,122 @@
+<nav class="blue darken-2">
+  <div class="nav-wrapper">
+    <a class="brand-logo"  href="#">DEMO APP</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a href="#">
+          <i class="material-icons">search</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<article>
+  <div class="row">
+    <div class="col s12 m4 offset-m1">
+      <div class="card blue darken-1 medium">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="https://download.unsplash.com/photo-1433785567155-bf5530cab72c" alt="card demo">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator white-text text-darken-4">
+            SgPostcode Demo App
+            <i class="material-icons right">more_vert</i>
+          </span>
+        </div>
+
+        <div class="card-reveal">
+          <span class="grey-text card-title">
+            Introduce
+            <i class="material-icons right">close</i>
+          </span>
+          <p>
+            This is a simple demo for sg_postcode gem.
+            For more information, please check the repository
+          </p>
+        </div>
+      </div>
+
+      <div class="card medium">
+        <div id="map-canvas"></div>
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <div class="card light-green lighten-4">
+        <div class="card-content">
+          <div class="card-title">Convert Form</div>
+          <p>
+            <div class="row">
+              <form action="/" class="s6">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="postcode" type="text" length="100" name="postcode" value="<%= params[:postcode]%>">
+                    <label for="Postcode">Input text</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <button type="submit" class="waves-effect waves-light btn">Convert</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Result</span>
+            <p>
+              <table class="responsive-table">
+                <thead>
+                  <th>Name</th>
+                  <th>Long</th>
+                  <th>Lat</th>
+                </thead>
+
+                <tbody>
+                  <%- @result.each do |result| %>
+                    <tr>
+                      <td><%= result.fetch(:format_address)%></td>
+                      <td><%= result.fetch(:long)%></td>
+                      <td><%= result.fetch(:lat)%></td>
+                    </tr>
+                  <%end%>
+                </tbody>
+              </table>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<%-centerLatLong = @result.count > 0 ? [@result.first[:lat], @result.first[:long]] : [1.36, 103.87] %>
+
+<script>
+  function initialize() {
+    var mapCanvas = document.getElementById('map-canvas');
+    var mapOptions = {
+      center: new google.maps.LatLng(<%= centerLatLong[0] %>, <%= centerLatLong[1] %>),
+      zoom: 10
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    <%- @result.each do |result| %>
+      var place = new google.maps.LatLng(<%= result[:lat] %>, <%= result[:long] %>);
+      var marker = new google.maps.Marker({
+        position: place,
+        map: map,
+        title: "<%= result[:format_address] %>",
+        animation: google.maps.Animation.DROP,
+      });
+    <%end%>
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
