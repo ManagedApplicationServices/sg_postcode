@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sg_postcode (1.0.1)
+    sg_postcode (1.1.0)
       rails (~> 4.2.3)
 
 GEM
