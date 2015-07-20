@@ -1,17 +1,21 @@
 module SgPostcode
   class CacheAdapter
-    def initialize(cache, *keys)
-      @cache = cache
-      @keys = keys
+    def initialize(key)
+      @cache = Redis.new
+      @key = key
+      @hash_name = "SgPostcodeCaching"
     end
 
     def fetch
-      @keys.inject([]) { |key| value_of(key) }
+      value_of @key
+    end
+
+    def store(key, value)
+      @cache.hset(@hash_name, key, value)
     end
 
     def value_of(key)
-      #TODO
-      nil
+      @cache.hget(@hash_name, key)
     end
   end
 end

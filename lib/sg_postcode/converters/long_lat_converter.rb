@@ -57,7 +57,12 @@ module SgPostcode
     def response(postcode)
       case @host
       when :Google
-        Proxy.new(Google.new(postcode), nil).request
+        Proxy
+          .new(
+            Google.new(postcode),
+            CacheAdapter.new(postcode)
+          )
+          .request
       else
         nil
       end
