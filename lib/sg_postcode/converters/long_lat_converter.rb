@@ -43,6 +43,7 @@ module SgPostcode
     # SgPostcode::LongLatConverter.send_geo_request("230000")
     #
     def send_geo_request(postcode)
+      # FIXME: not sure
       return nil if Module.const_defined? @host
 
       Response.new(
@@ -56,7 +57,7 @@ module SgPostcode
     def response(postcode)
       case @host
       when :Google
-        Proxy.new(nil, Google.new(postcode)).request
+        Proxy.new(Google.new(postcode), nil).request
       else
         nil
       end
@@ -68,6 +69,7 @@ module SgPostcode
     end
 
     def class_name(host)
+      # FIXME: not sure
       return nil unless Module.constants.include? host
       host.to_sym
     end
