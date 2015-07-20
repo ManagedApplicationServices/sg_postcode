@@ -9,7 +9,7 @@ module SgPostcode
     end
 
     def request
-      service.request
+      service.request unless cache_engine.try :fetch
     end
   end
 end
