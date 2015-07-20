@@ -1,7 +1,6 @@
 module SgPostcode
   class Proxy
-    attr_reader :service
-    attr_reader :cache_adapter
+    attr_reader :service, :cache_adapter
 
     def initialize(service, cache_adapter)
       @cache_adapter = cache_adapter
