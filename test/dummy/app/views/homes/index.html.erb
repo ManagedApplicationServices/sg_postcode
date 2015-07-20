@@ -33,6 +33,23 @@
           <p>
             This is a simple demo for sg_postcode gem.
             For more information, please check the repository
+            <br>
+            <strong>
+              E.g:
+              <ol>
+                <li>
+                  555851, 098537, 098537, 349489, 098537, 098537
+                </li>
+
+                <li>
+                  247964, 247964, 247964, 247964, 247964, 247964, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335, 050335
+                </li>
+
+                <li>
+                  247964, 238432, 050335, 521110, 546080, 308215
+                </li>
+              </ul>
+            </strong>
           </p>
         </div>
       </div>
@@ -77,6 +94,7 @@
                   <th>Name</th>
                   <th>Long</th>
                   <th>Lat</th>
+                  <th>Density</th>
                 </thead>
 
                 <tbody>
@@ -85,6 +103,7 @@
                       <td><%= result.fetch(:format_address)%></td>
                       <td><%= result.fetch(:long)%></td>
                       <td><%= result.fetch(:lat)%></td>
+                      <td><%= result.fetch(:density, 1)%></td>
                     </tr>
                   <%end%>
                 </tbody>
