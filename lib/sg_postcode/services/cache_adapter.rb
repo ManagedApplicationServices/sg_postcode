@@ -12,6 +12,7 @@ module SgPostcode
 
     def store(key, value)
       @cache.hset(@hash_name, key, value)
+      value
     end
 
     def value_of(key)

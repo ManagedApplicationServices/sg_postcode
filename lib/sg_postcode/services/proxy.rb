@@ -2,13 +2,21 @@ module SgPostcode
   class Proxy
     attr_reader :service, :cache_adapter
 
-    def initialize(service, cache_adapter)
-      @cache_adapter = cache_adapter
-      @service = service
+    def initialize(service, postcode, cache: true)
+      @postcode = postcode
+
+      case service
+      when :Google
+        @service = Google.new(postcode)
+      end
+
+      @cache_adapter = CacheAdapter.new(postcode) if cache
     end
 
     def request
-      service.request unless cache_adapter.try :fetch
+      return nil unless service && cache_adapter
+
+      cache_adapter.fetch || cache_adapter.store(@postcode, service.request)
     end
   end
 end

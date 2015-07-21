@@ -55,17 +55,7 @@ module SgPostcode
     private
 
     def response(postcode)
-      case @host
-      when :Google
-        Proxy
-          .new(
-            Google.new(postcode),
-            CacheAdapter.new(postcode)
-          )
-          .request
-      else
-        nil
-      end
+      Proxy.new(@host, postcode, cache: true).request
     end
 
     def convert_options(opts)
