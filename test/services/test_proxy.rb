@@ -55,4 +55,3 @@ class TestProxy < Minitest::Test
     end
   end
 end
-
