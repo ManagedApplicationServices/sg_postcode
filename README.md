@@ -7,9 +7,7 @@ Status](https://travis-ci.org/ManagedApplicationServices/sg_postcode.svg?branch=
 
 - Convert an array of SG Postcode to an array of place info, include long, lat, and format address
 
-- Convert a range of SG Postcode to an array of place info, include long, lat, and format address of all valid postcode
-
-- Support different outputs
+- Support different outputs (LATER)
 
 
 ##Support Versions
@@ -18,11 +16,17 @@ Status](https://travis-ci.org/ManagedApplicationServices/sg_postcode.svg?branch=
 
 ##Install
 
-> TODO
+ To install this gem, simply use `gem install sg_postcode` or add this line
+
+ ```
+   gem 'sg_postcode', '~> 1.1.1'
+ ```
+ to the **Gemfile**, and run `bundle install`
+
 
 ##Usage
 
-1. To convert an array of SG postcode to an array of place info
+Follow this snippet
 
   ```
     require 'sg_postcode'
@@ -46,13 +50,12 @@ Status](https://travis-ci.org/ManagedApplicationServices/sg_postcode.svg?branch=
 
   `SgPostCode::ResponseBuilder::Config.fields` (also #add_key_path, #remove_key_path)
 
-  **TODO: will improve it
-
-- To convert a range of SG postcode to an array of place info
 
 ##Contribute
 
-Feel free to fork it and send me PRs to help it better
+Feel free to fork it and send me PRs to help it better.
+
+This project use [Zenhub](http://zenhub.io) as a PM tool.
 
 ##Copyright
 
