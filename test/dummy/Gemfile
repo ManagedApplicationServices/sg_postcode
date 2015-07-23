@@ -1,9 +1,0 @@
-source 'https://rubygems.org'
-
-gem 'rails', '4.2.3'
-gem 'sg_postcode'
-gem 'minitest'
-gem 'minitest-line'
-gem 'rest-client'
-gem 'simplecov', :require => false, group: :test
-gem 'redis'

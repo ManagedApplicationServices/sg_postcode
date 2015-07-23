@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     sg_postcode (1.2.1)
-      rails (~> 4.2.3)
+      redis (~> 3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -124,6 +124,7 @@ PLATFORMS
 DEPENDENCIES
   minitest
   minitest-line
+  rails (= 4.2.3)
   redis
   rest-client
   sg_postcode!
