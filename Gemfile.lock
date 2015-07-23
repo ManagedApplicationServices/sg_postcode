@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sg_postcode (1.2.1)
+    sg_postcode (1.2.3)
       redis (~> 3.2)
 
 GEM
