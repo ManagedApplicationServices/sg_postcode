@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-# Declare your gem's dependencies in sg_postcode.gemspec.
-# Bundler will treat runtime dependencies like base dependencies, and
-# development dependencies will be added by default to the :development group.
+gem 'rails', '4.2.3'
 gem 'sg_postcode'
 gem 'minitest'
 gem 'minitest-line'
