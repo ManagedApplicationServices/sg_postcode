@@ -1,4 +1,4 @@
-# SgPostcode
+# SgPostcode :gem:
 
 [![Build
 Status](https://travis-ci.org/ManagedApplicationServices/sg_postcode.svg?branch=master)](https://travis-ci.org/ManagedApplicationServices/sg_postcode)
@@ -18,19 +18,18 @@ Convert an array of **Postcode** to an array of place info, include **long, lat,
  ```
    gem 'sg_postcode', '~> 1.2.3'
  ```
- to the **Gemfile**, and run `bundle install`.
+ to the **Gemfile**, and run `bundle install`. :grin:
 
 
 ##Usage
 
 Follow this snippet
 
-  ```
-    require 'sg_postcode'
-
-	postcode = ['238432', '234444']
-    SgPostcode::Array.new(postcodes).convert
-  ```
+```
+ require 'sg_postcode'
+ postcode = ['238432', '234444']
+ SgPostcode::Array.new(postcodes).convert
+```
 
 There are some options:
 
@@ -44,33 +43,32 @@ Actually right now, this gem just accept these default value :smirk:
 
 1. Key Path:
 
-	To edit the response data's fields, you can take a look at `lib/sg_postcode/response/config.rb`
+  To edit the response data's fields, you can take a look at `lib/sg_postcode/response/config.rb`
 
-	We use `#dig` method, that is implement in [this tutorial](http://thingsinabucket.com/2015/07/01/three_little_hacks/) to get the value in the hash. So we call `key_path` for the path of many keys.
-	Checkout [this snippet](https://github.com/ManagedApplicationServices/sg_postcode/blob/develop/lib/sg_postcode/response/json_output.rb#L41-L45) for more information.
+  We use `#dig` method, that is implement in [this tutorial](http://thingsinabucket.com/2015/07/01/three_little_hacks/) to get the value in the hash. So we call `key_path` for the path of many keys.
+  Checkout [this snippet](https://github.com/ManagedApplicationServices/sg_postcode/blob/develop/lib/sg_postcode/response/json_output.rb#L41-L45) for more information.
 
-	The `.add_key_path` and `.remove_key_path` will be implement in the future version.
+  The `.add_key_path` and `.remove_key_path` will be implement in the future version.
 
-- Redis config
+2. Redis config
 
-	In default, Redis will use `localhost` and port `6379`, if you want to customize, you can set the value for the environment variable `REDIS_URL`.
+  In default, Redis will use `localhost` and port `6379`, if you want to customize, you can set the value for the environment variable `REDIS_URL`.
 
-	For example:
+  For example:
 
-	```
-		ENV[`REDIS_URL`] =  "redis://:p4ssw0rd@10.0.1.1:6380/15"
-	```
+  ```
+    ENV[`REDIS_URL`] =  "redis://:p4ssw0rd@10.0.1.1:6380/15"
+  ```
 
-	Check out the [`redis` gem](https://github.com/redis/redis-rb#getting-started) for more information.
+  Check out the [`redis` gem](https://github.com/redis/redis-rb#getting-started) for more information.
 
-	The gem use **Hash** type to store the **postcode request**. The **Hash** key is defined in `lib/sg_postcode/services/cache_adapter.rb`
+  The gem use **Hash** type to store the **postcode request**. The **Hash** key is defined in `lib/sg_postcode/services/cache_adapter.rb`
 
-	You can change it, just call `SgPostcode::CacheAdapter.hashname = 'IamAwesomeStore'`
-
+  You can change it, just call `SgPostcode::CacheAdapter.hashname = 'IamAwesomeStore'`
 
 ##Contribute
 
-Feel free to fork it and send me PRs || Issues, comments to help it better. :+1:
+Feel free to fork it and send me PRs and Issues, comments to help it better. :+1:
 
 This project use [Zenhub](http://zenhub.io) as a PM tool.
 
