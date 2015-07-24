@@ -1,62 +1,72 @@
-# SgPostcode
+# SgPostcode :gem:
 
 [![Build
 Status](https://travis-ci.org/ManagedApplicationServices/sg_postcode.svg?branch=master)](https://travis-ci.org/ManagedApplicationServices/sg_postcode)
 
-##Features
+Convert an array of **Postcode** to an array of place info, include **long, lat, and format address**.
 
-- Convert an array of SG Postcode to an array of place info, include long, lat, and format address
+##Requirement :octocat:
 
-- Support different outputs (LATER)
+- **ruby > 1.9**, recommend **> 2.0.0**
+- **redis**
 
-
-##Support Versions
-
-- ruby > 1.9, recommend > 2.0.0
-
-##Install
+##Install :paperclip:
 
  To install this gem, simply use `gem install sg_postcode` or add this line
 
- ```
-   gem 'sg_postcode', '~> 1.1.1'
- ```
- to the **Gemfile**, and run `bundle install`
+ `gem 'sg_postcode', '~> 1.2.3'`
+ 
+ to the **Gemfile**, and run `bundle install`. :grin:
 
 
-##Usage
+##Usage :gift_heart:
 
 Follow this snippet
 
-  ```
-    require 'sg_postcode'
+```
+ require 'sg_postcode'
+ postcode = ['238432', '234444']
+ SgPostcode::Array.new(postcodes).convert
+```
 
-	postcode = ['238432', '234444']
-    SgPostcode::Array.new(postcodes).convert
-  ```
+There are some options:
 
+- `response_type`: default is :json
+- `host`: default :Google
 
-  `error_ignore`: default `true`.
+Actually right now, this gem just accept these default value :smirk:
 
-  So if call ``SgPostcode::Array.new(postcodes).convert(error_ignore: false)``
-  it'll stop if there are any invalid postcode.
+####ADVANCE USAGES: :bulb:
 
-  options for SgPostcode::Array.new(postcodes, options)
+1. **Key Path**
 
-  - `service_provider`: default is `:Google`
-  - `response_type`: default is `:json`
+  To edit the response data's fields, you can take a look at `lib/sg_postcode/response/config.rb`
 
-  You can also config the returns fields in result, call
+  We use `#dig` method, that is implement in [this tutorial](http://thingsinabucket.com/2015/07/01/three_little_hacks/) to get the value in the hash. So we call `key_path` for the path of a key sequence.
+  Checkout [this snippet](https://github.com/ManagedApplicationServices/sg_postcode/blob/develop/lib/sg_postcode/response/json_output.rb#L41-L45) for more information.
 
-  `SgPostCode::ResponseBuilder::Config.fields` (also #add_key_path, #remove_key_path)
+  The `.add_key_path` and `.remove_key_path` will be implement in the future version. :soon: :v:
 
+2. **Redis config**
 
-##Contribute
+  In default, Redis will use `localhost` and port `6379`, if you want to customize, you can set the value for the environment variable `REDIS_URL`.
 
-Feel free to fork it and send me PRs to help it better.
+  For example:
+
+  `ENV['REDIS_URL'] =  'redis://:p4ssw0rd@10.0.1.1:6380/15'`
+
+  Check out the [`redis` gem](https://github.com/redis/redis-rb#getting-started) for more information.
+
+  The gem use **Hash** type to store the **postcode request**. The **Hash** key is defined in `lib/sg_postcode/services/cache_adapter.rb`
+
+  You can change it, just call `SgPostcode::CacheAdapter.hashname = 'IamAwesomeStore'`
+
+##Contribute :+1:
+
+Feel free to fork it and send me PRs and Issues, comments to help it better. :+1:
 
 This project use [Zenhub](http://zenhub.io) as a PM tool.
 
-##Copyright
+##Copyright :100:
 
 This project rocks and uses MIT-LICENSE.
