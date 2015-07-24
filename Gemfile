@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rails', '4.2.3'
+gem 'rake'
 gem 'redis'
 gem 'rest-client'
 
