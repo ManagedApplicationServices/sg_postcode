@@ -57,7 +57,7 @@ Actually right now, this gem just accept these default value :smirk:
   For example:
 
   ```
-    ENV[`REDIS_URL`] =  "redis://:p4ssw0rd@10.0.1.1:6380/15"
+    ENV['REDIS_URL'] =  'redis://:p4ssw0rd@10.0.1.1:6380/15'
   ```
 
   Check out the [`redis` gem](https://github.com/redis/redis-rb#getting-started) for more information.
