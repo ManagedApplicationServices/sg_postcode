@@ -37,7 +37,7 @@ There are some options:
 - `response_type`: default is :json
 - `host`: default :Google
 
-Actually right now, this gem just accept these default value :smirl:
+Actually right now, this gem just accept these default value :smirk:
 
 ####ADVANCE USAGES:
 
