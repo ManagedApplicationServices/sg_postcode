@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'sg_postcode'
-gem 'sqlite3'
 gem 'rails', '4.2.3'
 gem 'redis'
 gem 'minitest'
