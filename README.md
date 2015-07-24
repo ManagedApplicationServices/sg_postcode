@@ -5,23 +5,21 @@ Status](https://travis-ci.org/ManagedApplicationServices/sg_postcode.svg?branch=
 
 Convert an array of **Postcode** to an array of place info, include **long, lat, and format address**.
 
-
-##Requirement
+##Requirement :octocat:
 
 - **ruby > 1.9**, recommend **> 2.0.0**
 - **redis**
 
-##Install
+##Install :paperclip:
 
  To install this gem, simply use `gem install sg_postcode` or add this line
 
- ```
-   gem 'sg_postcode', '~> 1.2.3'
- ```
+ `gem 'sg_postcode', '~> 1.2.3'`
+ 
  to the **Gemfile**, and run `bundle install`. :grin:
 
 
-##Usage
+##Usage :gift_heart:
 
 Follow this snippet
 
@@ -38,27 +36,24 @@ There are some options:
 
 Actually right now, this gem just accept these default value :smirk:
 
-####ADVANCE USAGES:
+####ADVANCE USAGES: :bulb:
 
-
-1. Key Path:
+1. **Key Path**
 
   To edit the response data's fields, you can take a look at `lib/sg_postcode/response/config.rb`
 
-  We use `#dig` method, that is implement in [this tutorial](http://thingsinabucket.com/2015/07/01/three_little_hacks/) to get the value in the hash. So we call `key_path` for the path of many keys.
+  We use `#dig` method, that is implement in [this tutorial](http://thingsinabucket.com/2015/07/01/three_little_hacks/) to get the value in the hash. So we call `key_path` for the path of a key sequence.
   Checkout [this snippet](https://github.com/ManagedApplicationServices/sg_postcode/blob/develop/lib/sg_postcode/response/json_output.rb#L41-L45) for more information.
 
-  The `.add_key_path` and `.remove_key_path` will be implement in the future version.
+  The `.add_key_path` and `.remove_key_path` will be implement in the future version. :soon: :v:
 
-2. Redis config
+2. **Redis config**
 
   In default, Redis will use `localhost` and port `6379`, if you want to customize, you can set the value for the environment variable `REDIS_URL`.
 
   For example:
 
-  ```
-    ENV['REDIS_URL'] =  'redis://:p4ssw0rd@10.0.1.1:6380/15'
-  ```
+  `ENV['REDIS_URL'] =  'redis://:p4ssw0rd@10.0.1.1:6380/15'`
 
   Check out the [`redis` gem](https://github.com/redis/redis-rb#getting-started) for more information.
 
@@ -66,12 +61,12 @@ Actually right now, this gem just accept these default value :smirk:
 
   You can change it, just call `SgPostcode::CacheAdapter.hashname = 'IamAwesomeStore'`
 
-##Contribute
+##Contribute :+1:
 
 Feel free to fork it and send me PRs and Issues, comments to help it better. :+1:
 
 This project use [Zenhub](http://zenhub.io) as a PM tool.
 
-##Copyright
+##Copyright :100:
 
 This project rocks and uses MIT-LICENSE.
