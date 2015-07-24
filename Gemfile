@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'rake'
 gem 'redis'
 gem 'rest-client'
 
