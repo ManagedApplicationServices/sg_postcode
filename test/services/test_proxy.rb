@@ -54,4 +54,11 @@ class TestProxy < Minitest::Test
       assert_equal true, proxy.request
     end
   end
+
+  # FIXME: add test for noncached version
+  #def test_non_cached
+    #nocache_proxy = SgPostcode::Proxy.new(:Google, "238432", cache: false)
+
+    #assert_equal true, nocache_proxy.request
+  #end
 end
