@@ -15,6 +15,7 @@ module SgPostcode
 
     def request
       return nil unless service && cache_adapter
+      #FIXME: allow noncached
 
       cache_adapter.fetch || cache_adapter.store(@postcode, service.request)
     end
