@@ -52,12 +52,13 @@ module SgPostcode
     private
 
     def response(postcode)
-      Proxy.new(@host, postcode, cache: true).request
+      Proxy.new(@host, postcode, cache: @cache).request
     end
 
     def convert_options(opts)
       @host = class_name(opts[:host]) || :Google
       @response_type = opts[:response_type] || :json
+      @cache = opts[:cache].nil? ? true : opts[:cache]
     end
 
     def class_name(host)

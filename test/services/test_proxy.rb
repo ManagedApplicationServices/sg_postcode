@@ -55,10 +55,14 @@ class TestProxy < Minitest::Test
     end
   end
 
-  # FIXME: add test for noncached version
-  #def test_non_cached
-    #nocache_proxy = SgPostcode::Proxy.new(:Google, "238432", cache: false)
+  def test_non_cached
+    nocache_proxy = SgPostcode::Proxy.new(:Google, "238432", cache: false)
 
-    #assert_equal true, nocache_proxy.request
-  #end
+    mock = Minitest::Mock.new
+    mock.expect :request, "Send Request"
+
+    nocache_proxy.stub :service, mock do
+      assert_equal "Send Request", nocache_proxy.request
+    end
+  end
 end
