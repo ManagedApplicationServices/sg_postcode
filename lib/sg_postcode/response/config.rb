@@ -9,7 +9,7 @@ module SgPostcode
 
         # add a custom key_path
         def add_key_path(key_name, *path)
-          #TODO
+          fields.merge!({ key_name => path })
         end
 
         # remove a key_path
@@ -17,7 +17,7 @@ module SgPostcode
         # @return nothing if keypath doesn't exist
         #
         def remove_key_path(key_name)
-          #TODO
+          fields.delete(key_name)
         end
 
         # default fields (key_paths)

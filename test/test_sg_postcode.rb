@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class TestSgPostcode < Minitest::Test
+  def setup
+    Redis.new.flushall
+  end
+
   def test_init_new_sg_postcode_array
     postcode_array = SgPostcode::Array.new([])
     assert_kind_of SgPostcode::Array, postcode_array
@@ -61,5 +65,15 @@ class TestSgPostcode < Minitest::Test
   def test_convert_with_options
     convert = SgPostcode::Array.new(['238438'], host: :Google)
     assert_kind_of Array, convert.convert
+  end
+
+  def test_non_cached
+    converter = SgPostcode::Array.new(['238432'], cache: false)
+    converter.convert
+
+    redis = Redis.new
+    store = SgPostcode::CacheAdapter.class_variable_get :@@hash_name
+
+    assert_equal 0, redis.hkeys(store).length
   end
 end

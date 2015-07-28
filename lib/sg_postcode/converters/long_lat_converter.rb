@@ -43,9 +43,6 @@ module SgPostcode
     # SgPostcode::LongLatConverter.send_geo_request("230000")
     #
     def send_geo_request(postcode)
-      # FIXME: not sure
-      return nil if Module.const_defined? @host
-
       Response.new(
         response(postcode),
         response_type: :json
@@ -55,16 +52,16 @@ module SgPostcode
     private
 
     def response(postcode)
-      Proxy.new(@host, postcode, cache: true).request
+      Proxy.new(@host, postcode, cache: @cache).request
     end
 
     def convert_options(opts)
       @host = class_name(opts[:host]) || :Google
       @response_type = opts[:response_type] || :json
+      @cache = opts[:cache].nil? ? true : opts[:cache]
     end
 
     def class_name(host)
-      # FIXME: not sure
       return nil unless Module.constants.include? host
       host.to_sym
     end
