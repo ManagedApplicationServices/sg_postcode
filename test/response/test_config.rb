@@ -18,4 +18,12 @@ class TestConfig < Minitest::Test
     assert_equal 4, SgPostcode::ResponseBuilder::Config.fields.keys.count
     assert_operator SgPostcode::ResponseBuilder::Config.fields.keys, :include?, :test
   end
+
+  def test_remove_key_path
+    add_key
+
+    SgPostcode::ResponseBuilder::Config.remove_key_path :test
+
+    assert_equal false, SgPostcode::ResponseBuilder::Config.fields.keys.include?(:test)
+  end
 end
